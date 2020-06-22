@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+{% load staticfiles %}
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta content="width=device-width, initial-scale=1, shrink-to-fit=no" name="viewport">
+        <meta content="" name="description">
+        <meta content="" name="author">
+        <title>MOOCACHA - Learning with videos and chatbots</title>
+        <!-- Bootstrap core CSS -->
+        <link
+        href="{% static 'moocacha/vendor/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
+        <!-- Custom styles for this template -->
+        <link href="{% static 'moocacha/css/small-business.css' %}" rel="stylesheet">
+    </head>
+    <body>
+        <!-- Navigation -->
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+            <div class="container">
+                <a class="navbar-brand" href="/">MOOCACHA - Massive Open Online Courses Assistent Chatbot</a>
+                <button aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation" class="navbar-toggler" data-target="#navbarResponsive" data-toggle="collapse" type="button">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarResponsive">
+                    <ul class="navbar-nav ml-auto">
+                    <!--
+                        <li class="nav-item">
+                            <a class="nav-link" href="/">Home</a>
+                        </li>
+                    -->
+                    </ul>
+                </div>
+                <div>
+                    <img src="{% static 'moocacha/img/konkukU.jpg' %}" alt="" style="width: 30%; height:30%;margin-right: 1pt"  align="right">
+                </div>          
+            </div>
+        </nav>
+        <!-- Page Content -->
+        <div class="container">
+            <div class="my-4">
+                <h3 style="margin-left: 5%;">자료 업로드(* 표시는 반드시 작성)</h3>
+                <form method='post' enctype="multipart/form-data">
+                    <table style="margin-left: auto; margin-right: auto;" width="90%">
+                        <tr bgcolor="#343a40" height="3">
+                            <td colspan="3"></td>
+                        </tr>
+                        {% csrf_token %}
+                        {{ form.as_table }}
+                            <tr bgcolor="#343a40" height="3">
+                                <td colspan="3"></td>
+                            </tr>
+                        </table>
+                        <br/>
+                        <div style="text-align:center;">
+                            <input type="submit" value="업로드">
+                        </div>
+                    </form>
+                </div>
+            </div>
+         <div class="container">
+            <div class="my-4" style="margin-left: 5%; font-style: italic; color: red;">
+                <h5 style="margin-left: 5%; font-style: italic; color: red;">*추가사항</h5>
+                <p> -> 최종 파일명과 영상 첨부파일명이 동일해야 함</p>
+                <p> -> 영상 파일 확장자는 .mp4</p>
+                <p> -> 영상의 스크립트를 뽑아야 하기 때문에 시간 초과 발생할 수 있음</p>
+            </div>
+            </div>
+            <!-- /.container -->
+            <!-- Footer -->
+            <footer class="py-5 bg-dark">
+                <div class="container">
+                    <p class="m-0 text-center text-white">Copyright &copy; Your Website 2019</p>
+                </div>
+                <!-- /.container -->
+            </footer>
+            <!-- Bootstrap core JavaScript -->
+            <script src="{% static 'moocacha/vendor/jquery/jquery.min.js' %}"></script>
+            <script src="{% static 'moocacha/vendor/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
+        </body>
+    </html>

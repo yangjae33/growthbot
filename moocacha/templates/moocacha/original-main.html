@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+{% load staticfiles %}
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta content="width=device-width, initial-scale=1, shrink-to-fit=no" name="viewport">
+        <meta content="" name="description">
+        <meta content="" name="author">
+        <title>MOOCACHA - Learning with videos and chatbots</title>
+        <!-- Bootstrap core CSS -->
+        <link href="{% static 'moocacha/vendor/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
+        <!-- Custom styles for this template -->
+        <link href="{% static 'moocacha/css/small-business.css' %}" rel="stylesheet">
+    </head>
+
+    <body>
+        <!-- Navigation -->
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+            <div class="container">
+                <a class="navbar-brand" href="/">MOOCACHA - Massive Open Online Courses Assistent Chatbot</a>
+                <button aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation" class="navbar-toggler" data-target="#navbarResponsive" data-toggle="collapse" type="button">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarResponsive">
+                    <ul class="navbar-nav ml-auto">
+                    <!--
+                        <li class="nav-item">
+                            <a class="nav-link" href="/">Home</a>
+                        </li>
+                    -->
+                    </ul>
+                </div>
+
+                <div>
+                    <img src="{% static 'moocacha/img/konkukU.jpg' %}" alt="" style="width: 30%; height:30%;margin-right: 1pt"  align="right">
+                </div>
+
+            </div>
+        </nav>
+
+
+        <!-- Page Content -->
+        <div class="container">
+            <h4 class="my-4" id="video_name"> {{ main_title|safe }}</h4>
+            <div class="row my-4">
+                <div class="col-8" width="70%">
+                    <div style="height:100%">
+                    <video autoplay controls id="player" name="media" width="100%">
+                        <source src="{{ main_url|safe }}" type="video/mp4">
+                    </video>
+                    </div>
+                </div>
+
+
+                <div class="col-4" width="30%">
+                    <div style="height:90%">
+                        <textarea class="form-control" id="chatLog" readonly style="height:100%; resize:none;"></textarea>
+                    </div>
+
+                    <div class="row" style="height:10%; padding:13px;">
+                        <!--form action="/chatmsg" method="post"-->
+                        {% csrf_token %}
+                        <input autocomplete="off" class="form-control" id="message" placeholder="Enter Message" style="width:75%" type="text">
+                        <button class="form-control" id="btnSend" style="width:25%">Send</button>
+                        <!--/form-->
+                    </div>
+                </div>
+            </div>
+
+            <script>
+                var i = 0;
+            </script>
+            {% for video in videos %}
+            <script>
+                if(i % 4 == 0){
+                    document.write('<div class="row my-4">');
+                }
+                i = i + 1;
+            </script>
+
+                <div class="col" width="25%">
+                    <a href="javascript:void(0);" onclick="getVideo('{{video.title|safe}}');">
+                        <video name="media" width="100%">
+                            <source src="{{ video.url|safe }}" type="video/mp4">
+                        </video>
+                        <div>
+                            <span>
+                                {{ video.time|safe }}
+                            </span>
+                        </div>
+                    </a>
+
+                    <div>
+                        <h6>
+                            <a href="javascript:void(0);" onclick="getVideo('{{video.title|safe}}');">{{video.title|safe}}</a>
+                        </h6>
+                    </div>
+                </div>   
+
+
+            <script>
+                if(i % 4 == 0){
+                    document.write('</div>');
+                }
+            </script>
+            {% endfor %}
+            
+        </div>
+
+        <script>
+            var chatSocket = new WebSocket('ws://' + window.location.host + '/ws/chat/');
+            chatSocket.onmessage = function (e) {
+                var data = JSON.parse(e.data);
+                var message = data['message'];
+                var searchedTime = data['timeShift']; //time for searched word
+                
+                //if user searches a word and if that word is in the video, says that coud not find
+                // if time was not found and msg has answer, it prints answer      
+                document.getElementById('chatLog').value += (message + '\n');
+                document.getElementById('player').currentTime = searchedTime;
+                textarea = document.getElementById('chatLog');
+                textarea.scrollTop = textarea.scrollHeight;                                                     
+            };
+            chatSocket.onclose = function (e) {
+                console.error('Chat socket closed unexpectedly');
+            };
+            document.getElementById('message').focus();
+            document.getElementById('message').onkeyup = function (e) {
+                if (e.keyCode === 13) { // enter, return
+                    document.getElementById('btnSend').click();
+                }
+            };
+            document.getElementById('btnSend').onclick = function (e) {
+                var playerCurrentTime = document.getElementById('player').currentTime;
+                var messageInput = document.getElementById('message');
+                var message = messageInput.value;
+                var video_name = document.getElementById('video_name').innerText;
+                document.getElementById("chatLog").value += ("Me : " + message + "\n");
+                chatSocket.send(JSON.stringify({'time': playerCurrentTime, 'message': message, 'videoName': video_name}));
+                messageInput.value = "";
+            };
+            
+            function getVideo(videoName) { 
+                location.href="/main?video=" + videoName; 
+            }
+        </script>
+        <!-- /.container -->
+        <!-- Footer -->
+        <footer class="py-5 bg-dark">
+            <div class="container">
+                <p class="m-0 text-center text-white">Copyright &copy; 건국대학교 사물지능 연구실 2019</p>
+            </div>
+            <!-- /.container -->
+        </footer>
+        <!-- Bootstrap core JavaScript -->
+        <script src="{% static 'moocacha/vendor/jquery/jquery.min.js' %}"></script>
+        <script src="{% static 'moocacha/vendor/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
+    </body>
+</html>
+
+

@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<aiml>
+  <category>
+    <pattern>*</pattern>
+    <template>I have no answer for that.</template>
+  </category>
+
+  <category>
+    <pattern>컴퓨팅적사고는</pattern>
+    <template>computing-thinking.mp4?/영상으로 답변 드리겠습니다!</template>
+  </category>
+
+ <category>
+    <pattern>기계는 컴퓨터지</pattern>
+    <that>컴퓨터가 효과적으로 수행할 수 있도록 문제를 정의하고 그에 대한 답을 기술하는 것이 포함딘 사고 과정 일체를 일컫는 것 컴퓨터가 할 일을 정확하게 알려주기 위해 생각하는 것</that>
+    <template>아니, 사람도 돼</template>
+  </category>
+
+ <category>
+    <pattern>코딩은</pattern>
+    <template>coding.mp4?/영상으로 답드리겠습니다!
+    </template>
+  </category>
+
+ <category>
+    <pattern>컴퓨팅적사고와 코딩의 차이점은</pattern>
+    <template>컴퓨팅적사고는 해결 과정을 생각하는 것이고 코딩은 컴퓨터가 할 일을 알려주는 것이다.</template>
+  </category>
+
+ <category>
+    <pattern>컴퓨팅적사고의 특징은</pattern>
+    <template>구조화, 추상화, 형식화, 문제해결 방식 식별, 자동화, 일반화.</template>
+  </category>
+
+ <category>
+    <pattern>구조화는</pattern>
+    <template>structure.mp4?/영상으로 답변 드리겠습니다!</template>
+  </category>
+
+ <category>
+    <pattern>추상화는</pattern>
+    <template>abstraction.mp4?/영상으로 답변드리겠습니다!</template>
+  </category>
+
+ <category>
+    <pattern>문제해결 방식 식별은</pattern>
+    <template>문제를 해결하는 솔루션 분석, 테스트, 구현하는 것.</template>
+  </category>
+
+ <category>
+    <pattern>형식화는</pattern>
+    <template>문제를 컴퓨터가 실행 가능한 형식으로 바꾸는 것.</template>
+  </category>
+
+ <category>
+    <pattern>자동화는</pattern>
+    <template>automation.mp4?/영상으로 답변 드리겠습니다!</template>
+  </category>
+
+ <category>
+    <pattern>일반화는</pattern>
+    <template>일반적으로 사용하게 하는 것</template>
+  </category>
+
+ <category>
+    <pattern>컴퓨팅적사고의 요소는</pattern>
+    <template>문제분할, 패턴식별, 추상화, 알고리즘화, 평가.</template>
+  </category>
+
+ <category>
+    <pattern>패턴식별은</pattern>
+    <template>pattern.mp4?/영상으로 답변 드리겠습니다!</template>
+  </category>
+
+ <category>
+    <pattern>문제분할은</pattern>
+    <template>decomposition.mp4?/영상으로 답변 드리겠습니다!</template>
+  </category>
+
+ <category>
+    <pattern>문제분할하는 이유는</pattern>
+    <template>문제를 분할하지 않으면 해결하기 어렵고, 분할하면 해결하기 쉽기 때문.</template>
+  </category>
+
+ <category>
+    <pattern>알고리즘화는</pattern>
+    <template>algorithm.mp4?/영상으로 답변드리겠습니다!</template>
+  </category>
+
+ <category>
+    <pattern>순서도는</pattern>
+    <template>flowchart.mp4?/영상으로 답변 드리겠습니다!</template>
+  </category>
+
+ <category>
+    <pattern>플로우차트는</pattern>
+    <template><srai>순서도는</srai></template>
+  </category>
+
+ <category>
+    <pattern>평가는</pattern>
+    <template>evaluation.mp4?/영상으로 답변 드리겠습니다!</template>
+  </category>
+
+ <category>
+    <pattern>평가측면은</pattern>
+    <template>성능, 신뢰성, 사용성, 경제성</template>
+  </category>
+
+</aiml>
+ 

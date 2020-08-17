@@ -1,0 +1,2 @@
+{"0": {"chatbot_name": "Chatbot5", "chatbot_ip": "172.17.0.5","chatbot_port": 9005, "chatbot_key": "FIVE"} ,
+"1": {"chatbot_name": "Chatbot6", "chatbot_ip": "172.17.0.9","chatbot_port": 9006, "chatbot_key": "SIX"}}
